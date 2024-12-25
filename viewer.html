@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STL Viewer</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/loaders/STLLoader.js"></script>
+</head>
+<body>
+  <script>
+    // 創建場景
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // 加載 STL 檔案
+    const loader = new THREE.STLLoader();
+    loader.load('path_to_your_model.stl', function (geometry) {
+      const material = new THREE.MeshStandardMaterial({ color: 0x555555 });
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+    });
+
+    /
